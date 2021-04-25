@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+const config = require("../config.json")
 
 exports.run = async (client, message, args) => {
 
@@ -18,7 +19,7 @@ exports.run = async (client, message, args) => {
     const embed = new Discord.MessageEmbed()
     .setTitle('CHAT TRANCADO!')
     .setDescription(`Este chat foi mutado.`)
-    .addField('Destrancar:', `Para destrancar use: ${prefix}unlock`, true)
+    .addField('Destrancar:', `Para destrancar use: ${config.prefix}unlock`, true)
     .addField('Trancado Por:', `${message.author}`, true)
     .addField('Motivo:', motivo)
     .setTimestamp()

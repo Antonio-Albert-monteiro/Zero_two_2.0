@@ -18,7 +18,7 @@ exports.run = async (client, message, args) => {
     const embed = new Discord.MessageEmbed()
     .setTitle('CHAT DESTRANCADO')
     .setDescription(`Este chat foi desmutado.`)
-    .addField('Trancado por:', `${message.author}`, true)
+    .addField('destrancado por:', `${message.author}`, true)
     .addField('Motivo:', motivo)
     .setTimestamp()
     .setThumbnail(avatar)
