@@ -129,25 +129,34 @@ client.on("ready", () => {
         .catch(console.error);
 })
 
-client.on('message', message => {
-    if (message.author.bot) return;
-    if (message.channel.type == 'dm') return;
-    if(!message.content.startsWith(".")) return;
-    if (!message.content.toLowerCase().startsWith(config.prefix.toLowerCase())) return;
-    if (message.content.startsWith(`<@!${client.user.id}>`) || message.content.startsWith(`<@${client.user.id}>`)) return;
+client.on("message", message => {
+    let embed90 = new Discord.MessageEmbed()
+    .setDescription(`olá ${message.author}, o meu prefixo é ${config.prefix}, para saber mas sobre os meus comandos ultilize ${config.prefix}comandos`)
+    .setColor('#8A2BE2')
     
+    if(message.author.bot) return;
+    if(message.channel.type == 'dm') return;
+    if(message.content == '<@822903328995803177>' || message.content == '<@!822903328995803177>') {
+        return message.channel.send(embed90)
+    }
+});
+
+client.on('message', message => {
+     if (message.author.bot) return;
+     if (message.channel.type == 'dm') return;
+     if (!message.content.toLowerCase().startsWith(config.prefix.toLowerCase())) return;
+
     const args = message.content
-    .trim().slice(config.prefix.length)
-    .split(/ +/g);
+        .trim().slice(config.prefix.length)
+        .split(/ +/g);
     const command = args.shift().toLowerCase();
 
     try {
         const commandFile = require(`./commands/${command}.js`)
         commandFile.run(client, message, args);
     } catch (err) {
-        message.reply(`o comando ${command} não existe`)
-        console.error('Erro:' + err)
-    }
+    console.error('Erro:' + err);
+  }
 });
 
 client.login(process.env.TOKEN);
