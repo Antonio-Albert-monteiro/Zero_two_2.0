@@ -85,7 +85,7 @@ client.on("message", message => {
         limite: 100
       })
     } else {
-        let geraXP = Math.floor(Math.random() * 25) + 1;
+        let geraXP = Math.floor(Math.random() * 10) + 1;
         let geralimite = Math.floor(Math.random() * 550) + 250;
         
       if (db.val().limite <= db.val().xp) {
