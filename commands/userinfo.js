@@ -2,8 +2,9 @@ const { MessageEmbed } = require('discord.js');
 
 exports.run = async (bot, message, args) => {
     let user = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.member;
+    
     let status;
-    /*switch (user.presence.status) {
+    switch (user.presence.status) {
         case "online":
             status = "online";
             break;
@@ -17,7 +18,7 @@ exports.run = async (bot, message, args) => {
             status = "offline";
             break;
         }
-        */
+        
         const embed = new MessageEmbed()
             .setTitle(`${user.user.username} Info`)
             .setColor(`#8A2BE2`)
@@ -28,7 +29,7 @@ exports.run = async (bot, message, args) => {
                     value: user.user.username,
                 },
                 {
-                    name: "smzmszm #️Hashtag: ",
+                    name: "#️⃣️ Hashtag: ",
                     value: `#${user.user.discriminator}`,
                 },
                 {
@@ -37,7 +38,7 @@ exports.run = async (bot, message, args) => {
                 },
                 {
                     name: "📡 Status: ",
-                    value: user.presence.status,
+                    value: status,
                 },
                 {
                     name: "🕹 Atividade: ",

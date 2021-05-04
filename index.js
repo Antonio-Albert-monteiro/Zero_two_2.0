@@ -13,7 +13,7 @@ client.on("guildMemberAdd", async (member) => {
   if (guild != member.guild) {
       return console.log("mas um membro, mas que pena que n foi no principal");
    } else {
-      let embed = await new Discord.MessageEmbed()
+      let embed = new Discord.MessageEmbed()
       .setColor("#8A2BE2")
       .setAuthor(member.user.tag, member.user.displayAvatarURL())
       .setTitle(`Boas-vindas`)
@@ -75,6 +75,8 @@ client.on("message", message => {
   if (message.channel.type == "DM") return;
   if (message.author.bot) return;
   
+  let user = message.author.tag
+  
   database.ref(`Xp/${message.author.id}`)
   .once("value").then(async function(db) {
     if (db.val() == null) {
@@ -82,7 +84,8 @@ client.on("message", message => {
       .set ({
         xp: 0,
         level: 1,
-        limite: 100
+        limite: 100,
+        name: user
       })
     } else {
         let geraXP = Math.floor(Math.random() * 10) + 1;
@@ -99,7 +102,8 @@ client.on("message", message => {
       } else {
         database.ref(`Xp/${message.author.id}`)
         .update ({
-          xp: db.val().xp + geraXP
+          xp: db.val().xp + geraXP,
+          name: user
         })
       }
     }
