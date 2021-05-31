@@ -1,4 +1,4 @@
-Discord = require('discord.js');
+const Discord = require('discord.js');
 
 module.exports.run = async (bot, message, MessageEmbed) => {
     let botMsg = await message.channel.send("〽️ Pining");
